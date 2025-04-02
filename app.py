@@ -8,7 +8,7 @@ import os
 from datetime import timedelta
 
 app = Flask(__name__)
-app.secret_key = '1000'
+app.secret_key = '1001'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_FILE_DIR'] = './flask_session'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=1)
