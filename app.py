@@ -14,7 +14,7 @@ app.config['SESSION_FILE_DIR'] = './flask_session'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=1)
 Session(app)
 
-genai.configure(api_key='AIzaSyBeA7ZmFDVAWenke8tq6-objInWJ--xhVE')
+genai.configure(api_key='YOUR_API_KEY')
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 USER_FILE = 'user.json'
