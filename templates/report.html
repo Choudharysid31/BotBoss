@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 800px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1, h3 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .summary {
+            display: flex;
+            justify-content: space-between;
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .summary-item {
+            font-weight: bold;
+        }
+        .verdict {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .verdict-green { background: #eafaf1; border-left: 5px solid #2ecc71; }
+        .verdict-red { background: #faeaea; border-left: 5px solid #e74c3c; }
+        .verdict-yellow { background: #fef5e6; border-left: 5px solid #f1c40f; }
+        .score {
+            margin-top: 10px;
+            font-size: 1.3rem;
+        }
+        .fa-star { color: #ccc; }
+        .fa-star.filled { color: #f1c40f; }
+        .detailed-feedback {
+            margin-top: 20px;
+        }
+        .feedback-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .question { font-weight: bold; color: #2980b9; }
+        .answer { margin-left: 10px; padding-left: 10px; border-left: 3px solid #7f8c8d; }
+        .rating {
+            margin: 10px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+        }
+        .strengths, .improvements { margin-top: 10px; }
+        .strengths strong { color: #27ae60; }
+        .improvements strong { color: #c0392b; }
+        .star-container {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Interview Report</h1>
+        <div class="summary">
+            <div class="summary-item">Candidate: <strong>{{ username }}</strong></div>
+            <div class="summary-item">Duration: <strong>{{ "%.1f"|format(duration) }} minutes</strong></div>
+            <div class="summary-item">Status: <strong class="{{ 'completed' if completed else 'incomplete' }}">
+                {{ 'Completed' if completed else 'Ended Early' }}
+            </strong></div>
+        </div>
+
+        <div class="verdict verdict-{{ verdict.color }}">
+            <h3>Final Verdict: {{ verdict.verdict }}</h3>
+            <p>{{ verdict.reason }}</p>
+            <div class="star-container">
+                {% for i in range(10) %}
+                    <i class="fas fa-star {% if i < (avg_score)|round %}filled{% endif %}"></i>
+                {% endfor %}
+                <span class="score">({{ "%.1f"|format(avg_score) }}/10)</span>
+            </div>
+        </div>
+
+        <div class="detailed-feedback">
+            <h3>Question-by-Question Feedback</h3>
+            {% for item in feedback %}
+            <div class="feedback-item">
+                <div class="question">{{ item.question }}</div>
+                <div class="answer">{{ item.answer }}</div>
+                <div class="rating">
+                    {% for i in range(10) %}
+                        <i class="fas fa-star {% if i < (item.score)|round %}filled{% endif %}"></i>
+                    {% endfor %}
+                    <span>({{ "%.1f"|format(item.score) }}/10)</span>
+                </div>
+                <div class="brief-feedback"><em>{{ item.brief_feedback }}</em></div>
+                {% if item.strengths %}
+                <div class="strengths">
+                    <strong>Strengths:</strong>
+                    <ul>{% for strength in item.strengths %}<li>{{ strength }}</li>{% endfor %}</ul>
+                </div>
+                {% endif %}
+                {% if item.improvements %}
+                <div class="improvements">
+                    <strong>Areas for Improvement:</strong>
+                    <ul>{% for improvement in item.improvements %}<li>{{ improvement }}</li>{% endfor %}</ul>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

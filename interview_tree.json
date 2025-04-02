@@ -1,0 +1,257 @@
+{
+  "nodes": [
+    {
+      "nodeId": "root",
+      "type": "verification",
+      "prompt": "Welcome to the Python Developer Interview. Are you ready to begin?",
+      "edges": [
+        {"condition": "ready", "targetNodeId": "disclaimer"},
+        {"condition": "not_ready", "targetNodeId": "closing"},
+        {"condition": "default", "targetNodeId": "root"}
+      ]
+    },
+    {
+      "nodeId": "disclaimer",
+      "type": "info",
+      "prompt": "This will be a hands-on interview for the role of python developer which will comprise of multiple skill like OOPS, DSA, DBMS and Python Programming so are you comfortable to go?",
+      "edges": [
+        {"condition": "positive", "targetNodeId": "data_structures"},
+        {"condition": "not_ready", "targetNodeId": "closing"},
+        {"condition": "default", "targetNodeId": "disclaimer"}
+      ]
+    },
+    {
+      "nodeId": "data_structures",
+      "type": "technical",
+      "prompt": "What is the difference between a list and a tuple in Python?",
+      "edges": [
+        {"condition": "answer_adequate", "targetNodeId": "memory_management"},
+        {"condition": "answer_inadequate", "targetNodeId": "list_followup"},
+        {"condition": "user_not_know", "targetNodeId": "list_followup"}
+      ]
+    },
+    {
+      "nodeId": "list_followup",
+      "type": "technical",
+      "prompt": "Why are tuples faster than lists in Python?",
+      "edges": [
+        {"condition": "answered_properly", "targetNodeId": "memory_management"},
+        {"condition": "user_not_know", "targetNodeId": "oop_followup"}
+      ]
+    },
+    {
+      "nodeId": "memory_management",
+      "type": "technical",
+      "prompt": "How does Python handle memory management and garbage collection?",
+      "edges": [
+        {"condition": "answer_adequate", "targetNodeId": "multithreading"},
+        {"condition": "answer_inadequate", "targetNodeId": "memory_followup"},
+        {"condition": "user_not_know", "targetNodeId": "memory_followup"}
+      ]
+    },
+    {
+      "nodeId": "memory_followup",
+      "type": "technical",
+      "prompt": "Explain reference counting and how Python's garbage collector works.",
+      "edges": [
+        {"condition": "answer_adequate", "targetNodeId": "multithreading"},
+        {"condition": "answer_inadequate", "targetNodeId": "multithreading"},
+        {"condition": "user_not_know", "targetNodeId": "multithreading"}
+      ]
+    },
+    {
+      "nodeId": "multithreading",
+      "type": "technical",
+      "prompt": "What is Python's Global Interpreter Lock (GIL), and how does it affect multithreading?",
+      "edges": [
+        {"condition": "answer_adequate", "targetNodeId": "databases"},
+        {"condition": "answer_inadequate", "targetNodeId": "multithreading_followup"},
+        {"condition": "user_not_know", "targetNodeId": "oop_followup"}
+      ]
+    },
+    {
+      "nodeId": "multithreading_followup",
+      "type": "technical",
+      "prompt": "How can you bypass GIL in Python for true parallel execution?",
+      "edges": [
+        {"condition": "answer_adequate", "targetNodeId": "databases"},
+        {"condition": "user_not_know", "targetNodeId": "oop_followup"},
+        {"condition": "default", "targetNodeId": "multithreading_followup"}
+      ]
+    },
+    {
+      "nodeId": "databases",
+      "type": "technical",
+      "prompt": "How can you connect to a database using Python? Which libraries would you use?",
+      "edges": [
+        {"condition": "answer_adequate", "targetNodeId": "oop_basics"},
+        {"condition": "answer_inadequate", "targetNodeId": "database_followup"},
+        {"condition": "user_not_know", "targetNodeId": "performance_optimization"},
+        {"condition": "default", "targetNodeId": "databases"}
+      ]
+    },
+    {
+      "nodeId": "database_followup",
+      "type": "technical",
+      "prompt": "What is the difference between SQLAlchemy and SQLite in Python?",
+      "edges": [
+        {"condition": "answered", "targetNodeId": "code_challenge_3"},
+        {"condition": "user_not_know", "targetNodeId": "code_challenge_1"},
+        {"condition": "default", "targetNodeId": "database_followup"}
+      ]
+    },
+    {
+      "nodeId": "oop_screen",
+      "type": "technical",
+      "prompt": "What is the difference between @staticmethod and @classmethod in Python?",
+      "edges": [
+        {"condition": "answer_adequate", "targetNodeId": "code_challenge_1"},
+        {"condition": "answer_inadequate", "targetNodeId": "oops_basics"},
+        {"condition": "user_not_know", "targetNodeId": "oops_basics"}
+      ]
+    },
+    {
+      "nodeId": "oop_followup",
+      "type": "technical",
+      "prompt": "Can you explain multiple inheritance in Python with an example?",
+      "edges": [
+        {"condition": "answered", "targetNodeId": "oop_screen"},
+        {"condition": "not_know", "targetNodeId": "code_challenge_1"},
+        {"condition": "default", "targetNodeId": "oop_followup"}
+      ]
+    },
+    {
+      "nodeId": "code_challenge_1",
+      "type": "code",
+      "prompt": "Write a Python function to check if a number is prime.",
+      "edges": [
+        {"condition": "code_submitted", "targetNodeId": "code_challenge_2"},
+        {"condition": "not_know", "targetNodeId": "code_challenge_2"},
+        {"condition": "default", "targetNodeId": "code_challenge_1"}
+      ]
+    },
+    {
+      "nodeId": "code_challenge_2",
+      "type": "code",
+      "prompt": "Write a Python function that reads a text file and counts the occurrences of each word.",
+      "edges": [
+        {"condition": "code_submitted", "targetNodeId": "code_challenge_3"},
+        {"condition": "not_know", "targetNodeId": "code_challenge_3"},
+        {"condition": "default", "targetNodeId": "code_challenge_2"}
+      ]
+    },
+    {
+      "nodeId": "code_challenge_3",
+      "type": "code",
+      "prompt": "Write an SQL query using Python to fetch all records from a database where the age is greater than 25.",
+      "edges": [
+        {"condition": "code_submitted", "targetNodeId": "debugging"},
+        {"condition": "not_know", "targetNodeId": "debugging"},
+        {"condition": "default", "targetNodeId": "code_challenge_3"}
+      ]
+    },
+    {
+      "nodeId": "debugging",
+      "type": "technical",
+      "prompt": "How would you debug a Python program? What tools or techniques would you use?",
+      "edges": [
+        {"condition": "answer_adequate", "targetNodeId": "performance_optimization"},
+        {"condition": "answer_inadequate", "targetNodeId": "debugging_followup"},
+        {"condition": "not_know", "targetNodeId": "debugging_followup"},
+        {"condition": "default", "targetNodeId": "debugging"}
+      ]
+    },
+    {
+      "nodeId": "debugging_followup",
+      "type": "technical",
+      "prompt": "Can you explain how breakpoints work in Python debugging?",
+      "edges": [
+        {"condition": "answered", "targetNodeId": "performance_optimization"},
+        {"condition": "not_know", "targetNodeId": "performance_optimization"},
+        {"condition": "default", "targetNodeId": "debugging_followup"}
+      ]
+    },
+    {
+      "nodeId": "performance_optimization",
+      "type": "technical",
+      "prompt": "How can you optimize Python code for better performance?",
+      "edges": [
+        {"condition": "answer_adequate", "targetNodeId": "closing"},
+        {"condition": "not_know", "targetNodeId": "closing"},
+        {"condition": "default", "targetNodeId": "performance_optimization"}
+      ]
+    },
+    {
+      "nodeId": "oops_basics",
+      "type": "technical",
+      "prompt": "What are the four pillars of Object-Oriented Programming (OOP)?",
+      "edges": [
+        {"condition": "answer_adequate", "targetNodeId": "oops_encapsulation"},
+        {"condition": "answer_inadequate", "targetNodeId": "oops_encapsulation"},
+        {"condition": "not_know", "targetNodeId": "oops_encapsulation"}
+      ]
+    },
+    {
+      "nodeId": "oops_encapsulation",
+      "type": "technical",
+      "prompt": "How do you implement encapsulation in Python?",
+      "edges": [
+        {"condition": "answer_adequate", "targetNodeId": "oops_inheritance"},
+        {"condition": "answer_inadequate", "targetNodeId": "oops_inheritance"},
+        {"condition": "not_know", "targetNodeId": "oops_inheritance"}
+      ]
+    },
+    {
+      "nodeId": "oops_inheritance",
+      "type": "technical",
+      "prompt": "What are the different types of inheritance in Python?",
+      "edges": [
+        {"condition": "answer_adequate", "targetNodeId": "oops_polymorphism"},
+        {"condition": "answer_inadequate", "targetNodeId": "oops_polymorphism"},
+        {"condition": "not_know", "targetNodeId": "oops_polymorphism"}
+      ]
+    },
+    {
+      "nodeId": "oops_polymorphism",
+      "type": "technical",
+      "prompt": "What is polymorphism in Python? Give an example.",
+      "edges": [
+        {"condition": "answer_adequate", "targetNodeId": "oops_abstraction"},
+        {"condition": "answer_inadequate", "targetNodeId": "oops_abstraction"},
+        {"condition": "not_know", "targetNodeId": "oops_abstraction"}
+      ]
+    },
+    {
+      "nodeId": "oops_abstraction",
+      "type": "technical",
+      "prompt": "How is abstraction achieved in Python?",
+      "edges": [
+        {"condition": "answer_adequate", "targetNodeId": "oops_static_class_methods"},
+        {"condition": "answer_inadequate", "targetNodeId": "oops_static_class_methods"},
+        {"condition": "not_know", "targetNodeId": "oops_static_class_methods"}
+      ]
+    },
+    {
+      "nodeId": "oops_static_class_methods",
+      "type": "technical",
+      "prompt": "What parameters are passed for class method and static method?",
+      "edges": [
+        {"condition": "answer_adequate", "targetNodeId": "code_challenge_1"},
+        {"condition": "answer_inadequate", "targetNodeId": "code_challenge_1"},
+        {"condition": "not_know", "targetNodeId": "code_challenge_1"}
+      ]
+    },
+    {
+      "nodeId": "exit",
+      "type": "conclusion",
+      "prompt": "Thank you for your time. The interview has been terminated.",
+      "edges": []
+    },
+    {
+      "nodeId": "closing",
+      "type": "conclusion",
+      "prompt": "Thank you for completing the interview. We will review your responses and get back to you soon. You can end the interview.",
+      "edges": []
+    }
+  ]
+}
