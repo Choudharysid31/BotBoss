@@ -8,7 +8,7 @@ import os
 from datetime import timedelta
 
 app = Flask(__name__)
-app.secret_key = '1001'
+app.secret_key = '12000'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_FILE_DIR'] = './flask_session'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=1)
@@ -21,7 +21,6 @@ USER_FILE = 'user.json'
 INTERVIEW_TREE_FILE = 'interview_tree.json'
 FEEDBACK_DIR = 'feedback'
 
-# Ensure directories exist
 os.makedirs(FEEDBACK_DIR, exist_ok=True)
 os.makedirs(app.config['SESSION_FILE_DIR'], exist_ok=True)
 
@@ -123,8 +122,9 @@ def evaluate_all_answers(conversation):
             continue
         try:
             prompt = f"""
-            Analyze this technical interview response as an easy interviewer and 
-            judge it keeping some room for mistake by candidate:
+            Analyze this technical interview response as an easy interviewer, don't deduct ratings on 
+            grammar and formal/informal language usages and 
+            judge it keeping some room for mistake by candidate and be little lenient:
             Question: {item.get('question', '')}
             Answer: {item.get('answer', '')}
 

@@ -146,8 +146,7 @@
       "prompt": "Write an SQL query using Python to fetch all records from a database where the age is greater than 25.",
       "edges": [
         {"condition": "code_submitted", "targetNodeId": "debugging"},
-        {"condition": "not_know", "targetNodeId": "debugging"},
-        {"condition": "default", "targetNodeId": "code_challenge_3"}
+        {"condition": "not_know", "targetNodeId": "debugging"}
       ]
     },
     {
@@ -244,7 +243,7 @@
     {
       "nodeId": "exit",
       "type": "conclusion",
-      "prompt": "Thank you for your time. The interview has been terminated.",
+      "prompt": "Thank you for your time. The interview has been cancelled.You can end the interview",
       "edges": []
     },
     {

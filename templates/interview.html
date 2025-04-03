@@ -454,12 +454,10 @@
         const statusIndicator = document.getElementById('statusIndicator');
         const chatContainer = document.getElementById('chatContainer');
 
-        // Scroll to bottom of chat container
         function scrollToBottom() {
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
-        // Initialize speech recognition
         function initializeRecognition() {
             recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
             recognition.lang = 'en-US';
@@ -574,10 +572,8 @@
             }
         }
 
-        // Initialize with chat scrolled to bottom
         window.addEventListener('load', scrollToBottom);
 
-        // Add animation to new messages as they're added
         const observer = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
                 mutation.addedNodes.forEach(function(node) {
@@ -590,27 +586,22 @@
 
         observer.observe(chatContainer, { childList: true });
 
-        // Auto-resize textarea as user types
         answerInput.addEventListener('input', function() {
             this.style.height = 'auto';
             this.style.height = (this.scrollHeight) + 'px';
         });
 
-        // Handle mic button click
         micButton.addEventListener('click', function(e) {
             e.preventDefault();
             toggleRecording();
         });
 
-        // Keyboard shortcuts
         document.addEventListener('keydown', function(e) {
-            // Alt+M to toggle recording
+
             if (e.altKey && e.key.toLowerCase() === 'm') {
                 e.preventDefault();
                 toggleRecording();
             }
-
-            // Ctrl+Enter to submit form
             if (e.ctrlKey && e.key === 'Enter') {
                 document.querySelector('form').submit();
             }
